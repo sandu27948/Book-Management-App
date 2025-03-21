@@ -37,14 +37,59 @@ class _BookListScreenState extends State<BookListScreen> {
 
     if (id.isNotEmpty && title.isNotEmpty && author.isNotEmpty) {
       setState(() {
-        _books.insert(0, {'id': id, 'title': title, 'author': author}); // Insert at the beginning
+        _books.insert(0, {'id': id, 'title': title, 'author': author});
       });
 
-      // Clear input fields
       _idController.clear();
       _titleController.clear();
       _authorController.clear();
     }
+  }
+
+  void _editBook(int index) {
+    TextEditingController idController = TextEditingController(text: _books[index]['id']);
+    TextEditingController titleController = TextEditingController(text: _books[index]['title']);
+    TextEditingController authorController = TextEditingController(text: _books[index]['author']);
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Edit Book'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _buildTextField(idController, 'Book ID', Icons.confirmation_number),
+              SizedBox(height: 10),
+              _buildTextField(titleController, 'Book Name', Icons.book),
+              SizedBox(height: 10),
+              _buildTextField(authorController, 'Author', Icons.person),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  _books[index] = {
+                    'id': idController.text,
+                    'title': titleController.text,
+                    'author': authorController.text,
+                  };
+                });
+                Navigator.of(context).pop();
+              },
+              child: Text('Save'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -66,7 +111,7 @@ class _BookListScreenState extends State<BookListScreen> {
             _buildTextField(_authorController, 'Author', Icons.person),
             SizedBox(height: 15),
             SizedBox(
-              width: 200, // Set the desired width here
+              width: 200,
               child: ElevatedButton(
                 onPressed: _addBook,
                 style: ElevatedButton.styleFrom(
@@ -104,6 +149,25 @@ class _BookListScreenState extends State<BookListScreen> {
                             subtitle: Text(
                               'Author: ${_books[index]['author']}',
                               style: TextStyle(color: Colors.black54),
+                            ),
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  icon: Icon(Icons.edit, color: Colors.blue),
+                                  onPressed: () {
+                                    _editBook(index);
+                                  },
+                                ),
+                                IconButton(
+                                  icon: Icon(Icons.delete, color: Colors.red),
+                                  onPressed: () {
+                                    setState(() {
+                                      _books.removeAt(index);
+                                    });
+                                  },
+                                ),
+                              ],
                             ),
                           ),
                         );
