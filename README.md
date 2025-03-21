@@ -8,6 +8,8 @@ This application allows users to manage a collection of books, including adding,
 
 *   **Add Book:**  Add a new book to the collection with details like title, author, ISBN, and publication year.
 *   **View Books:**  Display a list of all books in the collection.
+*   **Update Book:**  Modify the details of an existing book.
+*   **Delete Book:**  Remove a book from the collection.
 
 ## Data Model
 
@@ -19,5 +21,3 @@ This application allows users to manage a collection of books, including adding,
 ## Future implementation
 
 *   **Search Books:** Search for books by title, author, or ISBN.
-*   **Update Book:**  Modify the details of an existing book.
-*   **Delete Book:**  Remove a book from the collection.
