@@ -1,16 +1,19 @@
-# flutter_application_1
+# Book Management Application
 
-A new Flutter project.
+## Overview
 
-## Getting Started
+This application allows users to manage a collection of books, including adding, viewing, updating, and deleting book information.
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+*   **Add Book:**  Add a new book to the collection with details like title, author, ISBN, and publication year.
+*   **View Books:**  Display a list of all books in the collection.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Data Model
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+| Field          | Type    | Description                                  |
+| -------------- | ------- | -------------------------------------------- |
+| Title          | String  | The title of the book.                       |
+| Author         | String  | The author of the book.                      |
+
+## Future implementation
